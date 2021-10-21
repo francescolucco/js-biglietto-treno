@@ -21,6 +21,8 @@
 
  let prezzoUlteriormenteScontato = ''
 
+ let dettagliPrezzo = ''
+
  let datoValido = true;
  let errorMsg1 = '';
  let errorMsg2 = '';
@@ -46,17 +48,28 @@ if(isNaN(age)){
  }
 
  if (datoValido == true) {
-  if(age < 18){
+  if((age < 18) && (codeDiscountClient !== 'SCONTO20')){
     finalPrice = ((tiketPrice * 80) / 100).toFixed(2);
+    document.getElementById('fl_print-dates').innerHTML = 
+`PREZZO SCONTATO del 20%: promozione valida per tutti i passeggeri minorenni non in possesso di codice di sconto
+`
+;
   }else if(age > 65){
     finalPrice = ((tiketPrice * 60) / 100).toFixed(2);
+    document.getElementById('fl_print-dates').innerHTML = 
+`PREZZO SCONTATO del 40%: promozione valida per tutti i passeggeri over 65
+`
+;
   }else{
     finalPrice = tiketPrice;
+    document.getElementById('fl_print-dates').innerHTML = 
+`PREZZO INTERO: dato dalla distanza della tratta moltiplicata per il costo di ogni singolo km, ossia di 0,21 &euro;
+`
+;
   }
   console.log(tiketPrice);
   console.log(finalPrice);
  } else {
-   // gestisci in qualche modo l''avviso che i dati non sono validi
    errorMsg4 = 'I dati inseriti non sono validi. Ti chiediamo di ricare la pagina e di inserirli nuovamente.';
    ;
  }
@@ -67,15 +80,60 @@ console.log(errorMsg3)
 console.log(errorMsg4)
 
 if (datoValido == true) {
-  if((age <= 20) && (codeDiscountClient == 'SCONTO20')) {
+  if((age < 18) && (codeDiscountClient == 'SCONTO20')) {
+    prezzoUlteriormenteScontato = ((finalPrice * 60) / 100).toFixed(2);
+    document.getElementById('fl_print-dates').innerHTML = 
+`PREZZO SCONTATO del 40%: promozione valida per tutti i passeggeri minorenni e in possesso di codice sconto.
+`
+;
+  }else if((18<= age <=20) && (codeDiscountClient == 'SCONTO20')) {
     prezzoUlteriormenteScontato = ((finalPrice * 80) / 100).toFixed(2);
+    document.getElementById('fl_print-dates').innerHTML = 
+    `PREZZO SCONTATO del 20%: promozione valida per tutti i passeggeri under20 in possesso di codice sconto.
+    `
+    ;
   }else{
     prezzoUlteriormenteScontato = finalPrice;
   }
   console.log(prezzoUlteriormenteScontato);
  }
 
+document.getElementById('fl_total-cost2').innerHTML = 
+`<span id="fl_total-cost">${firstName}</span> , <br>
+il costo del tuo biglietto è di:
+<br>
+<span id="fl_total-cost">${prezzoUlteriormenteScontato} &euro;</span> 
+`
+;
 
+
+
+
+
+// document.getElementById('fl_print-dates').innerHTML = 
+// `PREZZO INTERO: dato dalla distanza della tratta moltiplicata per il costo di ogni singolo km, ossia di 0,21 &euro;
+// `
+// ;
+
+// document.getElementById('fl_print-dates').innerHTML = 
+// `PREZZO SCONTATO del 20%: promozione valida per tutti i passeggeri minorenni
+// `
+// ;
+
+// document.getElementById('fl_print-dates').innerHTML = 
+// `PREZZO SCONTATO del 40%: promozione valida per tutti i passeggeri over 65
+// `
+// ;
+
+// document.getElementById('fl_print-dates').innerHTML = 
+// `PREZZO SCONTATO del 40%: promozione valida per tutti i passeggeri minorenni in possesso di codice sconto.
+// `
+// ;
+
+// document.getElementById('fl_print-dates').innerHTML = 
+// `PREZZO SCONTATO del 20%: promozione valida per tutti i passeggeri under20 in possesso di codice sconto.
+// `
+// ;
 
 
 

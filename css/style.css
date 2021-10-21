@@ -1,0 +1,44 @@
+body{
+  background-image: url(../img/BLOG_0706-1275x800.jpg);
+  background-size: cover;
+}
+main{
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+h1{
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.794);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-right: 50pxs;
+}
+.special{
+  text-align: center;
+  color: white;
+  background-color: rgba(41, 1, 1, 0.801);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-right: 50pxs;
+  text-transform: uppercase;
+}
+p{
+  text-align: center;
+  color: white;
+  background-color: rgba(107, 3, 3, 0.787);
+  border-radius: 40px;
+  padding: 30px;
+  margin-top: 20px;
+  margin-right: 50pxs;
+}
+#fl_total-cost{
+  text-transform: uppercase;
+  font-size: 50px;
+  padding: 25px 0px;
+}
