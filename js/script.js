@@ -16,53 +16,64 @@
  const priceKm = 0.21;
 
  const tiketPrice = (kmTraveled * priceKm).toFixed(2);
- console.log(tiketPrice)
 
  const codeDiscountClient = prompt('Inserisci il tuo codice di sconto')
 
- const codeDiscount = 'SCONTO20'
+ let prezzoUlteriormenteScontato = ''
 
  let datoValido = true;
- let errorMsg1 = ''
- let errorMsg2 = ''
- let errorMsg3 = ''
- let finalPrice = ''
+ let errorMsg1 = '';
+ let errorMsg2 = '';
+ let errorMsg3 = '';
+ let errorMsg4 = '';
+ let finalPrice = '';
 
- if(age < 20 || age == 20){
-  finalPrice = ((tiketPrice * 80) / 100).toFixed(2);
- }else if(age > 65 || age == 65){
-  finalPrice = ((tiketPrice * 60) / 100).toFixed(2)
- }else{
-  finalPrice = tiketPrice
+ // controllo se l'età è un numero
+if(isNaN(age)){
+  datoValido = false;
+  errorMsg1 = 'Inserire un numero valido';
+ }
+ 
+ // controllo se il kilometraggio è un numero
+ if(isNaN(kmTraveled)){
+   datoValido = false;
+   errorMsg2 = 'Inserire un numero valido';
+ }
+ 
+ // controllo codice di sconto
+ if(codeDiscountClient != 'SCONTO20'){
+   errorMsg3 = 'Codice non valido';
  }
 
- console.log(finalPrice)
- 
- console.log(errorMsg1)
- console.log(errorMsg2)
- console.log(errorMsg3)
+ if (datoValido == true) {
+  if(age < 18){
+    finalPrice = ((tiketPrice * 80) / 100).toFixed(2);
+  }else if(age > 65){
+    finalPrice = ((tiketPrice * 60) / 100).toFixed(2);
+  }else{
+    finalPrice = tiketPrice;
+  }
+  console.log(tiketPrice);
+  console.log(finalPrice);
+ } else {
+   // gestisci in qualche modo l''avviso che i dati non sono validi
+   errorMsg4 = 'I dati inseriti non sono validi. Ti chiediamo di ricare la pagina e di inserirli nuovamente.';
+   ;
+ }
 
-// controllo se l'età è un numero
-if(isNaN(age)){
- datoValido = false;
- errorMsg1 = 'Inserire un numero valido';
-}
+console.log(errorMsg1)
+console.log(errorMsg2)
+console.log(errorMsg3)
+console.log(errorMsg4)
 
-// controllo se il kilometraggio è un numero
-if(isNaN(kmTraveled)){
-  datoValido = false;
-  errorMsg2 = 'Inserire un numero valido';
-}
-
-// controllo codice di sconto
-if(codeDiscount != 'SCONTO20'){
-  errorMsg3 = 'Codice non valido';
-}
-
-
-
-
-
+if (datoValido == true) {
+  if((age <= 20) && (codeDiscountClient == 'SCONTO20')) {
+    prezzoUlteriormenteScontato = ((finalPrice * 80) / 100).toFixed(2);
+  }else{
+    prezzoUlteriormenteScontato = finalPrice;
+  }
+  console.log(prezzoUlteriormenteScontato);
+ }
 
 
 
